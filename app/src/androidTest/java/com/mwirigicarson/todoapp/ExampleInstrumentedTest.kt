@@ -1,4 +1,4 @@
-package com.mwirigicarson.myapplication
+package com.mwirigicarson.todoapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

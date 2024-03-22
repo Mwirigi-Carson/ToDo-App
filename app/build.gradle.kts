@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mwirigicarson.myapplication"
+    namespace = "com.mwirigicarson.todoapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mwirigicarson.myapplication"
+        applicationId = "com.mwirigicarson.todoapp"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
     kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
 //    Navigation
     implementation(libs.androidx.navigation.compose)

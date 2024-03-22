@@ -1,4 +1,4 @@
-package com.mwirigicarson.myapplication.ui.theme
+package com.mwirigicarson.todoapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.mwirigicarson.myapplication
+package com.mwirigicarson.todoapp
 
 import org.junit.Test
 
