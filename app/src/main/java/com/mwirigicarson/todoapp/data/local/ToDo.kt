@@ -10,5 +10,5 @@ data class ToDo(
     val id : Int,
     val title : String,
     val description : String,
-    val date: Date
+//    val date: Date
 )

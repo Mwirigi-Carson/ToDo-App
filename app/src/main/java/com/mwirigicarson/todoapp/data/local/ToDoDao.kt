@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ToDoDao {
-    @Query("SELECT * FROM ToDo ORDER BY date")
+    @Query("SELECT * FROM ToDo ORDER BY id ASC")
     fun getAllToDo() : Flow<List<ToDo>>
 
     @Query("SELECT * FROM ToDo WHERE id = :id")

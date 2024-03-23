@@ -1,4 +1,6 @@
 package com.mwirigicarson.todoapp
 
-class AppEvents {
+sealed class AppEvents {
+    data class Navigate(val route : String) : AppEvents()
+    data object PopBackStack : AppEvents()
 }
