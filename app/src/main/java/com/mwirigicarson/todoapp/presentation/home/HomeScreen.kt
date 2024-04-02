@@ -14,10 +14,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mwirigicarson.todoapp.AppEvents
+import com.mwirigicarson.todoapp.data.local.ToDo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,7 +28,18 @@ fun HomeScreen(
     onNavigate : (AppEvents.Navigate) -> Unit,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-    val allToDos = homeViewModel.allToDos.collectAsState(emptyList())
+    val allToDos by homeViewModel.allToDos.collectAsState(emptyList())
+
+    LaunchedEffect(key1 = true){
+        homeViewModel.uiEvents.collect { events ->
+            when(events){
+                is AppEvents.Navigate -> {
+                    onNavigate(events)
+                }
+                else -> {}
+            }
+        }
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -54,18 +68,28 @@ fun HomeScreen(
         Box (
             modifier = Modifier.padding(paddingValues)
         ){
-            LazyColumn {
-                items(allToDos.value){
-                    ToDoItem(
-                        todo = it,
-                        onItemClick = {
-                            homeViewModel.onEvents(
-                                HomeEvents.OnNoteClick(it)
-                            )
-                        }
-                    )
+            HomeContents(
+                todos = allToDos,
+                onItemClick = {
+                    homeViewModel.onEvents(HomeEvents.OnNoteClick(it))
                 }
-            }
+            )
+        }
+    }
+}
+
+@Composable
+fun HomeContents(
+    todos : List<ToDo>,
+    onItemClick : (ToDo) -> Unit
+){
+
+    LazyColumn(){
+        items(todos){todo ->
+            ToDoItem(
+                todo = todo,
+                onItemClick = onItemClick
+            )
         }
     }
 }

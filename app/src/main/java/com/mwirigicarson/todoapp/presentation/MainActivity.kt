@@ -95,7 +95,7 @@ fun TodoApp(
     }
 }
 
-const val TODO_NAV_ARGUMENT = "todoId"
+const val TODO_NAV_ARGUMENT = "toDoId"
 
 sealed class Screen(val route : String){
     data object Home: Screen("home_screen")

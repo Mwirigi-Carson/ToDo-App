@@ -41,7 +41,7 @@ class EditViewModel @Inject constructor (
 
     fun onEvents(events: EditEvents){
         when(events){
-            EditEvents.NavBack -> {
+            is EditEvents.NavBack -> {
                 viewModelScope.launch {
                     _uiEvents.send(AppEvents.PopBackStack)
                 }
@@ -52,7 +52,7 @@ class EditViewModel @Inject constructor (
             is EditEvents.OnTitleChange -> {
                 _title.value = events.title
             }
-            EditEvents.Save -> {
+            is EditEvents.Save -> {
                 viewModelScope.launch {
                     val todo = ToDo(
                         id = _id.value,
